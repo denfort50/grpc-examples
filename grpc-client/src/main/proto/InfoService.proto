@@ -1,0 +1,21 @@
+syntax = "proto3";
+package ru.dkalchenko.server;
+
+message InfoRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string middleName = 3;
+  repeated string languages = 4;
+  repeated string frameworks = 5;
+}
+
+message InfoResponse {
+  string fio = 1;
+  int32 languagesCount = 2;
+  int32 frameworksCount = 3;
+  int32 queueNumber = 4;
+}
+
+service InfoService {
+  rpc getCompactInfo(InfoRequest) returns (stream InfoResponse);
+}
